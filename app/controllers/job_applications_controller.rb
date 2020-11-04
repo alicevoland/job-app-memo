@@ -33,6 +33,33 @@ class JobApplicationsController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:user_id])
+    @job_application = @user.job_applications.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:user_id])
+    @job_application = @user.job_applications.find(params[:id])
+    if @job_application.update(job_application_params)
+      flash[:success] = 'Candidature modifiée'
+      redirect_to user_job_applications_path(@user)
+    else
+      render :new
+    end
+  end
+
+  def destroy
+    @user = User.find(params[:user_id])
+    @job_application = @user.job_applications.find(params[:id])
+    if @job_application.destroy
+      flash[:success] = 'Candidature supprimée'
+    else
+      flash[:danger] = 'Une erreur est survenue'
+    end
+    redirect_to user_job_applications_path(@user)
+  end
+
   private
 
   def is_my_profile

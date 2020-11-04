@@ -24,4 +24,10 @@
   </p>
   <p> Description : <%= raw @description_html %> </p>
 
+  <div>
+    <%= link_to "Modifier", edit_user_job_application_path(@user, @job_application), class: "btn btn-outline-primary btn-lg" %>
+  </div>
+  <div>
+    <%= link_to "Supprimer", user_job_application_path(@user, @job_application), data: {confirm: "Etes-vous sûr ?"}, method: :delete, :class => "btn btn-outline-danger btn-lg mt-4" %>
+  </div>
 </div>
