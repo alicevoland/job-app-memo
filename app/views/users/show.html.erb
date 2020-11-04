@@ -1,0 +1,30 @@
+<% content_for :jumbotron do %>
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-4"> Espace personnel </h1>
+      <p class="lead"> <%= @user.email %> </p>
+    </div>
+  </div>
+<% end %>
+
+<!-- container -->
+<div class="container">
+
+  <!-- row -->
+  <div class="row">
+
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"> A venir </h5>
+          <p class="card-text"> Plein de nouvelles fonctionnalités à venir </p>
+          <%= link_to "Bientôt disponible...", root_path, class: "btn btn-primary disabled", disabled: true %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /row -->
+
+</div>
+<!-- /container -->

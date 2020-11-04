@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Jam</title>
+    <title>Job Application Memo</title>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= javascript_pack_tag 'application' %>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <%= stylesheet_pack_tag 'application', media: 'all' %>
   </head>
 
   <body>
-    <%= yield %>
+
+    <%= render partial: 'shared/navbar'%>
+    <%= yield :jumbotron %>
+    <%= render partial: 'shared/alerts'%>
+
+    <%= content_for?(:application) ? (yield :application) : (yield) %>
+
+    <%= render partial: 'shared/footer'%>
+
+    <%= javascript_pack_tag 'application' %>
   </body>
 </html>

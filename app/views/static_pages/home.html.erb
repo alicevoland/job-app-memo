@@ -1,0 +1,37 @@
+<% content_for :jumbotron do %>
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-4">Bienvenue !</h1>
+      <p class="lead"> Ce site vous permet de suivre vos candidatures </p>
+      <hr class="my-4">
+      <% if user_signed_in? %>
+        <p> Accédez à toutes les fonctionnalités à partir de votre espace personnel </p>
+        <p class="lead">
+          <%= link_to "Mon profil", user_path(current_user), class: "btn btn-primary btn-lg" %>
+        </p>
+      <% else %>
+        <p> Connectez vous (ou créez votre compte) pour accéder à toutes les fonctionnalités </p>
+        <p class="lead">
+          <%= link_to "Se connecter", new_user_session_path, class: "btn btn-primary btn-lg" %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<div class="container">
+  <h2> Introduction </h2>
+  <p> Site réalisé dans les deux objectifs suivants </p>
+  <ul>
+    <li> Apprentissage personnel du dev web </li>
+    <li> Création d'un outil plus intuitif pour le suivi des candidatures </li>
+  </ul>
+  <p>
+    En particulier : licence totalement libre (MIT), 
+    code source sur GitHub (<a href="https://github.com/mvoland/job-app-memo"> github.com/mvoland/job-app-memo </a>),
+    aucune garantie sur la stabilité et l'utilité du site
+  </p>
+  <p>
+    Très largement inspiré par l'outil Pole Emploi MEMO (<a href="https://github.com/StartupsPoleEmploi/memo"> github.com/StartupsPoleEmploi/memo </a>)
+  </p>
+</div>
