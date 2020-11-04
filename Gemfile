@@ -78,3 +78,7 @@ gem 'faker'
 
 # Pretty print in rails console
 gem 'table_print'
+
+# Markdown
+gem 'reverse_markdown'
+gem 'redcarpet'

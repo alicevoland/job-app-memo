@@ -1,0 +1,20 @@
+<% content_for :jumbotron do %>
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-4"> Candidature pour le poste </h1>
+      <p class="lead"> <%= @job_application.title %> </p>
+      <p class="lead">
+        <%= link_to "Retour sur les candidatures", user_job_applications_path(@user), class: "btn btn-outline-primary btn-lg" %>
+      </p>
+    </div>
+  </div>
+<% end %>
+
+<div class="container">
+
+  <h1> Détails de la candidature </h1>
+
+  <p> Titre : <%= @job_application.title %> </p>
+  <p> Description : <%= raw @description_html %> </p>
+
+</div>

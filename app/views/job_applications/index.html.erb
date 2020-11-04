@@ -1,0 +1,39 @@
+<% content_for :jumbotron do %>
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-4"> Mes candidatures </h1>
+      <p class="lead"> Voir mes <%= @job_applications.size %> candidatures </p>
+      <p class="lead d-flex">
+        <%= link_to "Retour sur mon profil", user_path(@user), class: "btn btn-outline-primary btn-lg" %>
+      </p>
+    </div>
+  </div>
+<% end %>
+
+<!-- container -->
+<div class="container">
+
+  <h4 class="my-4"> Mes candidatures </h4>
+
+  <!-- row -->
+  <div class="row">
+
+    <!-- job_application -->
+    <% @job_applications.each do |job_application| %>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"> <%= job_application.title %> </h5>
+            <p class="card-text"> Description : <%= job_application.description %> </p>
+            <%= link_to "Voir la candidature", user_job_application_path(@user, job_application), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <!-- /job_application -->
+
+  </div>
+  <!-- /row -->
+
+</div>
+<!-- /container -->
