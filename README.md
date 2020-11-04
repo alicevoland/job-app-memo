@@ -1,24 +1,12 @@
-# README
+# Job Application Memo
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Attention
 
-Things you may want to cover:
+En cours de développement !
 
-* Ruby version
+## Présentation
 
-* System dependencies
+Il s'agit d'une application dans l'esprit de [github.com/StartupsPoleEmploi/memo](https://github.com/StartupsPoleEmploi/memo) développée pour Pole Emploi.
 
-* Configuration
+## [https://job-memo.herokuapp.com/](https://job-memo.herokuapp.com/)
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
