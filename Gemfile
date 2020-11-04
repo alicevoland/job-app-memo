@@ -82,3 +82,7 @@ gem 'table_print'
 # Markdown
 gem 'reverse_markdown'
 gem 'redcarpet'
+
+# Parsing HTML
+gem 'nokogiri'
+gem 'open-uri'

@@ -13,14 +13,11 @@ JobApplication.destroy_all
 User.destroy_all
 puts 'DB cleaned up'
 
-user_0 = User.create(email: 'user0@yopmail.com', password: '123456')
-puts "Created user: #{user_0.email}"
-
-user_1 = User.create(email: 'user1@yopmail.com', password: '123456')
-puts "Created user: #{user_1.email}"
+user = User.create(email: 'user@yopmail.com', password: '123456')
+puts "Created user: #{user.email}"
 
 job_application_0 = JobApplication.create(
-  user: user_0,
+  user: user,
   title: 'Titre du job 0',
   description: '**Profil recherché :**
 
@@ -36,16 +33,9 @@ Capacité à évoluer :
 )
 puts "Created job application: #{job_application_0.title}"
 
-job_application_1 = JobApplication.create(
-  user: user_1,
-  title: 'Titre du job 1',
-  description: 'Description du job 1'
-)
-puts "Created job application: #{job_application_1.title}"
-
-10.times do
+3.times do
   job_application = JobApplication.create(
-    user: user_0,
+    user: user,
     title: Faker::Job.title,
     description: Faker::Job.field
   )

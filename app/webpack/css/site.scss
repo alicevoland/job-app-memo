@@ -1,6 +1,6 @@
-@import "~bootswatch/dist/flatly/variables";
+@import "~bootswatch/dist/pulse/variables";
 @import "~bootstrap/scss/bootstrap";
-@import "~bootswatch/dist/flatly/bootswatch";
+@import "~bootswatch/dist/pulse/bootswatch";
 
 html, body {
   height: 100%;
@@ -16,11 +16,12 @@ footer {
 }
 
 .jumbotron {
-  @extend .bg-light;
+  @extend .bg-light, .py-2;
 }
 
+
 .navbar {
-  @extend .navbar-dark, .bg-primary;
+  @extend .navbar-dark, .bg-primary, .py-2;
 }
 
 .card {

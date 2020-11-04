@@ -1,0 +1,17 @@
+ <% content_for :jumbotron do %>
+  <div class="jumbotron">
+    <div class="container">
+      <h1> Nouvelle candidature </h1>
+      <p class="lead"> Merci de remplir les renseignements suivants </p>
+      <p class="lead">
+        <%= link_to "Retour sur les candidatures", user_job_applications_path(@user), class: "btn btn-outline-primary btn-lg" %>
+      </p>
+    </div>
+  </div>
+<% end %>
+
+<div class="container">
+
+  <%= render partial: 'form' %>
+
+</div>

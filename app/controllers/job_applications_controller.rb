@@ -14,6 +14,25 @@ class JobApplicationsController < ApplicationController
     @job_applications = @user.job_applications.order(updated_at: :desc)
   end
 
+  def new
+    @user = User.find(params[:user_id])
+    @job_application = @user.job_applications.new(
+      url: params[:url]
+    )
+    JobApplicationParser.new(@job_application).complete_job_application
+  end
+
+  def create
+    @user = User.find(params[:user_id])
+    @job_application = @user.job_applications.new(job_application_params)
+    if @job_application.save
+      flash[:success] = 'Nouvelle candidature créée'
+      redirect_to user_job_applications_path(@user)
+    else
+      render :new
+    end
+  end
+
   private
 
   def is_my_profile
@@ -21,5 +40,9 @@ class JobApplicationsController < ApplicationController
       flash[:danger] = 'Vous ne pouvez pas accéder aux informations de ce compte'
       redirect_to :root
     end
+  end
+
+  def job_application_params
+    permitted = params.require(:job_application).permit(:title, :description, :url)
   end
 end

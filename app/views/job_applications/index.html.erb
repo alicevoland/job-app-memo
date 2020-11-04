@@ -1,7 +1,7 @@
 <% content_for :jumbotron do %>
   <div class="jumbotron">
     <div class="container">
-      <h1 class="display-4"> Mes candidatures </h1>
+      <h1> Mes candidatures </h1>
       <p class="lead"> Voir mes <%= @job_applications.size %> candidatures </p>
       <p class="lead d-flex">
         <%= link_to "Retour sur mon profil", user_path(@user), class: "btn btn-outline-primary btn-lg" %>
@@ -13,7 +13,37 @@
 <!-- container -->
 <div class="container">
 
-  <h4 class="my-4"> Mes candidatures </h4>
+  <h1> Une nouvelle candidature ? </h1>
+
+  <p>
+    Coller ci dessous le lien de l'offre (ou laisser vide si pas de lien internet)
+  </p>
+
+  <% if @job_application && @job_application.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <p>La création n'a pu aboutir pour les raisons suivantes : </p>
+      <ul>
+        <% @job_application.errors.full_messages.each do |message| %>
+          <li> <%= message %> </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_with(url: "/users/#{@user.id}/job_applications/new", method: "get", local: true) do |form| %>
+
+    <div class="form-group row">
+      <div class="col-8 col-lg-9 my-1">
+        <%= form.text_field :url, class: "form-control" %>
+      </div>
+      <div class="col-4 col-lg-3 my-1">
+        <%= form.submit "Valider", class: "btn btn-success btn-block" %>
+      </div>
+    </div>
+
+  <% end %>
+
+  <h1 class="my-4"> Mes candidatures </h1>
 
   <!-- row -->
   <div class="row">
@@ -24,8 +54,14 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title"> <%= job_application.title %> </h5>
-            <p class="card-text"> Description : <%= job_application.description %> </p>
-            <%= link_to "Voir la candidature", user_job_application_path(@user, job_application), class: "btn btn-primary" %>
+            <p class="card-text">
+              <% if job_application.url %>
+                <%= link_to job_application.url, job_application.url, target: "_blank" %>
+              <% else %>
+                Pas de lien
+              <% end %>
+            </p>
+            <%= link_to "Détails...", user_job_application_path(@user, job_application), class: "btn btn-outline-primary" %>
           </div>
         </div>
       </div>
