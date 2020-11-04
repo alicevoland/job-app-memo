@@ -1,0 +1,28 @@
+@import "~bootswatch/dist/flatly/variables";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootswatch/dist/flatly/bootswatch";
+
+html, body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+
+footer {
+  @extend .bg-secondary;
+}
+
+.jumbotron {
+  @extend .bg-light;
+}
+
+.navbar {
+  @extend .navbar-dark, .bg-primary;
+}
+
+.card {
+  @extend .my-2;
+}
