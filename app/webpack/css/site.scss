@@ -27,3 +27,7 @@ footer {
 .card {
   @extend .my-2;
 }
+
+.job-information.row p {
+  @extend .my-2;
+}

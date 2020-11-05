@@ -5,6 +5,7 @@ class JobApplicationsController < ApplicationController
   def show
     @user = User.find(params[:user_id])
     @job_application = @user.job_applications.find(params[:id])
+    @job_information = @job_application.job_informations.new
   end
 
   def index
