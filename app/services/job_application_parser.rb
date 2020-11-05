@@ -12,11 +12,9 @@ class JobApplicationParser
 
   def complete_with_url
     @page = Nokogiri::HTML(URI.open(@url))
-    if @page
-      complete_with_page
-    else
-      @job_application.description("Le lien n'a pas pu être ouvert, merci de remplir :\n")
-    end
+    complete_with_page
+  rescue StandardError
+    @job_application.description = "Le lien n'a pas pu être ouvert, merci de remplir :\n"
   end
 
   def complete_with_page
