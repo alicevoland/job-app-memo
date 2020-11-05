@@ -13,7 +13,7 @@
 
   <div class="form-group row">
     <div class="col-lg-9">
-      <%= form.text_field :title, value: "Titre du poste", class: "form-control"  %>
+      <%= form.text_field :title, value: @job_application.title ? @job_application.title : "Titre du poste", class: "form-control"  %>
     </div>
     <div class="col-lg-3">
       <%= form.submit "Valider", class: "btn btn-outline-success btn-block" %>
