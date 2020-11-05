@@ -9,6 +9,7 @@
 Faker::Config.locale = 'fr'
 puts 'Locale: fr'
 
+JobInformation.destroy_all
 JobApplication.destroy_all
 User.destroy_all
 puts 'DB cleaned up'
@@ -16,10 +17,14 @@ puts 'DB cleaned up'
 user = User.create(email: 'user@yopmail.com', password: '123456')
 puts "Created user: #{user.email}"
 
-job_application_0 = JobApplication.create(
-  user: user,
-  title: 'Titre du job 0',
-  description: '**Profil recherché :**
+job_application_0 = user.job_applications.create(
+  title: 'Titre du job 0'
+)
+puts "Created job application: #{job_application_0.title} with id #{job_application_0.id}"
+
+job_information_0_0 = job_application_0.job_informations.create(
+  name: 'Info 1',
+  content: '**Profil recherché :**
 
 De formation supérieure Bac+5 en Master en statistique ou école ingénieur spécialisé en Data Science, statistique, vous justifiez d’une expérience entre 5 ans et 8 ans en Datamining / Data Science / Analytics idéalement acquise dans le marketing direct (cross canal) / VAD et le digital.
 
@@ -31,13 +36,18 @@ Capacité à évoluer :
 - en mode projet,
 - dans un environnement de mise en place de solutions opérationnelles'
 )
+
+job_information_0_0 = job_application_0.job_informations.create(
+  name: 'Localisation',
+  content: 'Montpellier'
+)
+
 puts "Created job application: #{job_application_0.title}"
 
 3.times do
   job_application = JobApplication.create(
     user: user,
-    title: Faker::Job.title,
-    description: Faker::Job.field
+    title: Faker::Job.title
   )
   puts "Created job application: #{job_application.title}"
 end

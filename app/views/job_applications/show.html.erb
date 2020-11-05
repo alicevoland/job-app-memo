@@ -12,22 +12,18 @@
 
 <div class="container">
 
-  <h1> Détails de la candidature </h1>
-
-  <p> Titre : <%= @job_application.title %> </p>
-  <p> Lien :               
-    <% if @job_application.url %>
-      <%= link_to @job_application.url, @job_application.url, target: "_blank" %>
-    <% else %>
-      Pas de lien
-    <% end %>
-  </p>
-  <p> Description : <%= raw @description_html %> </p>
-
-  <div>
-    <%= link_to "Modifier", edit_user_job_application_path(@user, @job_application), class: "btn btn-outline-primary btn-lg" %>
+  <div class="btn-group">
+    <%= link_to "Modifier le titre", edit_user_job_application_path(@user, @job_application), class: "btn btn-primary btn-lg mr-4" %>
+    <%= link_to "Supprimer", user_job_application_path(@user, @job_application), data: {confirm: "Etes-vous sûr ?"}, method: :delete, :class => "btn btn-outline-danger btn-lg" %>
   </div>
-  <div>
-    <%= link_to "Supprimer", user_job_application_path(@user, @job_application), data: {confirm: "Etes-vous sûr ?"}, method: :delete, :class => "btn btn-outline-danger btn-lg mt-4" %>
-  </div>
+
+  <% @job_application.sorted_job_informations.each do |job_information| %>
+    <div class="job-application-description row">
+      <div class="col-lg-2 h2"> <%= job_information.name %> </div>
+      <div class="col-lg-10">
+        <%= raw job_information.content_md %>
+      </div>
+    </div>
+  <% end %>
+
 </div>

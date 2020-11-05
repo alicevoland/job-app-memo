@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users, only: [:show] do
-    resources :job_applications
+    resources :job_applications do
+      resources :job_informations
+    end
   end
 end

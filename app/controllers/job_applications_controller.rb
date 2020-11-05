@@ -5,21 +5,12 @@ class JobApplicationsController < ApplicationController
   def show
     @user = User.find(params[:user_id])
     @job_application = @user.job_applications.find(params[:id])
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions = {})
-    @description_html = markdown.render(@job_application.description)
   end
 
   def index
     @user = User.find(params[:user_id])
     @job_applications = @user.job_applications.order(updated_at: :desc)
-  end
-
-  def new
-    @user = User.find(params[:user_id])
-    @job_application = @user.job_applications.new(
-      url: params[:url]
-    )
-    JobApplicationParser.new(@job_application).complete_job_application
+    @job_application = @user.job_applications.new
   end
 
   def create
@@ -27,9 +18,9 @@ class JobApplicationsController < ApplicationController
     @job_application = @user.job_applications.new(job_application_params)
     if @job_application.save
       flash[:success] = 'Nouvelle candidature créée'
-      redirect_to user_job_applications_path(@user)
+      redirect_to user_job_application_path(@user, @job_application)
     else
-      render :new
+      render :index
     end
   end
 
@@ -43,9 +34,9 @@ class JobApplicationsController < ApplicationController
     @job_application = @user.job_applications.find(params[:id])
     if @job_application.update(job_application_params)
       flash[:success] = 'Candidature modifiée'
-      redirect_to user_job_applications_path(@user)
+      redirect_to user_job_application_path(@user, @job_application)
     else
-      render :new
+      render :edit
     end
   end
 
@@ -70,6 +61,6 @@ class JobApplicationsController < ApplicationController
   end
 
   def job_application_params
-    permitted = params.require(:job_application).permit(:title, :description, :url)
+    permitted = params.require(:job_application).permit(:title)
   end
 end
