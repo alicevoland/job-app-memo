@@ -6,11 +6,7 @@ class User < ApplicationRecord
 
   has_many :job_applications
 
-  def current_job_applications
-    job_applications.order(created_at: :desc).filter { |job| !job.archived }
-  end
-
-  def archived_job_applications
-    job_applications.order(created_at: :desc).filter { |job| job.archived }
+  def get_job_applications(archived:, current:)
+    job_applications.order(created_at: :desc).filter { |job| job.archived == archived && job.current == current }
   end
 end

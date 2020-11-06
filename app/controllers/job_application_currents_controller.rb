@@ -1,14 +1,14 @@
-class JobApplicationArchivesController < ApplicationController
+class JobApplicationCurrentsController < ApplicationController
   before_action :authenticate_user!
   before_action :is_my_profile
 
   def create
     @user = User.find(params[:user_id])
     @job_application = @user.job_applications.find(params[:job_application_id])
-    if @job_application.archived
-      @job_application.update(archived: false, current: true)
+    if @job_application.current
+      @job_application.update(archived: false, current: false)
     else
-      @job_application.update(archived: true, current: false)
+      @job_application.update(archived: false, current: true)
     end
     redirect_to user_job_applications_path(@user)
   end

@@ -1,0 +1,2 @@
+module JobApplicationCurrentsHelper
+end
