@@ -1,0 +1,13 @@
+<div class="job-information row mb-4 job-application-actions">
+  <hr class="my-2">
+  <div class="col-lg-2 h2">
+  </div>
+  <div class="col-lg-10">
+    <div class="btn-group">
+      <%= link_to "Ajouter une information", new_user_job_application_job_information_path(@user, @job_application), remote: true, class: "btn btn-primary btn-lg mr-4" %>
+      <%= link_to "Modifier le titre", edit_user_job_application_path(@user, @job_application), class: "btn btn-secondary btn-lg mr-4" %>
+      <%= link_to "Supprimer", user_job_application_path(@user, @job_application), data: {confirm: "Etes-vous sûr ?"}, method: :delete, :class => "btn btn-outline-danger btn-lg" %>
+    </div>
+  </div>
+  <hr class="my-2">
+</div>

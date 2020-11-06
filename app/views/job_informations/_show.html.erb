@@ -1,14 +1,19 @@
-<div class="job-information row">
-  <div class="col-lg-2 h2">
-    <%= job_information.name %>
+<div id="job-information-<%= job_information.id %>">
+
+  <div class="job-information row">
+    <div class="col-lg-2">
+      <h2> <%= job_information.name %> </h2>
+    </div>
+    <div class="col-lg-8">
+      <%= raw job_information.content_html %>
+      <%= job_information.created_at.strftime("%d - %m - %Y") %>
+    </div>
+    <div class="col-6 col-lg-1 h2">
+      <%= link_to "Modif.", edit_user_job_application_job_information_path(@user, @job_application, job_information), class: "btn btn-outline-primary btn-lg mr-4" %>
+    </div>
+    <div class="col-6 col-lg-1 h2">
+      <%= link_to "Supp.", user_job_application_job_information_path(@user, @job_application, job_information), data: {confirm: "Etes-vous sûr ?"}, method: :delete, remote: true, :class => "btn btn-outline-danger btn-lg" %>
+    </div>
   </div>
-  <div class="col-lg-8">
-    <%= raw job_information.content_html %>
-  </div>
-  <div class="col-6 col-lg-1 h2">
-    <%= link_to "Modif.", edit_user_job_application_job_information_path(@user, @job_application, job_information), class: "btn btn-outline-primary btn-lg mr-4" %>
-  </div>
-  <div class="col-6 col-lg-1 h2">
-    <%= link_to "Supp.", user_job_application_job_information_path(@user, @job_application, job_information), data: {confirm: "Etes-vous sûr ?"}, method: :delete, :class => "btn btn-outline-danger btn-lg" %>
-  </div>
+  <hr class="my-2">
 </div>
