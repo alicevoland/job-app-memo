@@ -1,0 +1,2 @@
+module JobApplicationArchivesHelper
+end

@@ -6,6 +6,11 @@
     <div class="btn-group">
       <%= link_to "Ajouter une information", new_user_job_application_job_information_path(@user, @job_application), remote: true, class: "btn btn-primary btn-lg mr-4" %>
       <%= link_to "Modifier le titre", edit_user_job_application_path(@user, @job_application), class: "btn btn-secondary btn-lg mr-4" %>
+      <% if @job_application.archived %>
+        <%= link_to "Récupérer",  user_job_application_job_application_archives_path(@user, @job_application), method: :post, class: "btn btn-outline-info btn-lg mr-4" %>
+      <% else %>
+        <%= link_to "Archiver",  user_job_application_job_application_archives_path(@user, @job_application), method: :post, class: "btn btn-outline-secondary btn-lg mr-4" %>
+      <% end %>
       <%= link_to "Supprimer", user_job_application_path(@user, @job_application), data: {confirm: "Etes-vous sûr ?"}, method: :delete, :class => "btn btn-outline-danger btn-lg" %>
     </div>
   </div>

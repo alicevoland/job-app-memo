@@ -23,7 +23,36 @@
   <div class="row">
 
     <!-- job_application -->
-    <% @job_applications.each do |job_application| %>
+    <% @user.current_job_applications.each do |job_application| %>
+      <div class="col-sm-6">
+        <div class="card card-border-primary">
+          <div class="card-body">
+            <h5 class="card-title"> <%= job_application.title %> </h5>
+            <p class="card-text">
+              <%= l job_application.created_at %>
+            </p>
+
+            <div class="d-flex">
+              <%= link_to "Détails...", user_job_application_path(@user, job_application), class: "btn btn-outline-primary btn-block mr-auto" %>
+              <%= link_to "Archiver",  user_job_application_job_application_archives_path(@user, job_application), method: :post, class: "btn btn-outline-secondary ml-2" %>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <!-- /job_application -->
+
+  </div>
+  <!-- /row -->
+
+  <h1 class="my-4"> Archives </h1>
+
+  <!-- row -->
+  <div class="row">
+
+    <!-- job_application -->
+    <% @user.archived_job_applications.each do |job_application| %>
       <div class="col-sm-6">
         <div class="card">
           <div class="card-body">
@@ -31,7 +60,11 @@
             <p class="card-text">
               <%= l job_application.created_at %>
             </p>
-            <%= link_to "Détails...", user_job_application_path(@user, job_application), class: "btn btn-outline-primary" %>
+            <div class="d-flex">
+
+              <%= link_to "Détails...", user_job_application_path(@user, job_application), class: "btn btn-outline-primary btn-block mr-auto" %>
+              <%= link_to "Récupérer",  user_job_application_job_application_archives_path(@user, job_application), method: :post, class: "btn btn-outline-info ml-2" %>
+            </div>
           </div>
         </div>
       </div>
