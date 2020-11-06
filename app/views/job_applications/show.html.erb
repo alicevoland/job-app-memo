@@ -13,19 +13,22 @@
 <div class="container">
 
   <% @job_application.sorted_job_informations.each do |job_information| %>
-    <% if job_information.id == @edit_job_information&.id %>
-      <%= render partial: 'job_informations/form', locals: { job_information: @edit_job_information } %>
-    <% else %>
-      <%= render partial: 'job_informations/show', locals: { job_information: job_information } %>
-    <% end %>
+    <div id="job-information-<%= job_information.id %>">
+      <% if job_information.id == @edit_job_information&.id %>
+        <%= render partial: 'job_informations/form', locals: { job_information: @edit_job_information } %>
+      <% else %>
+        <%= render partial: 'job_informations/show', locals: { job_information: job_information } %>
+      <% end %>
+    </div>
   <% end %>
 
-  <div id="form-action">
+  <div id="job-information-form">
     <% if @new_job_information %>
       <%= render partial: 'job_informations/form', locals: { job_information:  @new_job_information } %>
     <% else %>
       <%= render partial: 'job_applications/actions' %>
     <% end %>
   </div>
+
   <div class="my-2"> </div>
 </div>

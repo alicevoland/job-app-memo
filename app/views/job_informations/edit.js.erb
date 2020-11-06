@@ -1,0 +1,7 @@
+function run() {
+  let div = document.querySelector("div#job-information-<%= @edit_job_information.id %>")
+  div.innerHTML = ''
+  div.insertAdjacentHTML('afterbegin', "<%= j render partial: 'job_informations/form', locals: { job_information:  @edit_job_information } %>")
+}
+
+run()

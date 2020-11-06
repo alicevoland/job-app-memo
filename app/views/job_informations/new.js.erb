@@ -1,5 +1,5 @@
 function run() {
-  let formAction = document.querySelector("div#form-action")
+  let formAction = document.querySelector("div#job-information-form")
   formAction.innerHTML = ''
   formAction.insertAdjacentHTML('afterbegin', "<%= j render partial: 'job_informations/form', locals: { job_information:  @new_job_information } %>")
 }

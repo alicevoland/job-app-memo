@@ -35,18 +35,33 @@ class JobInformationsController < ApplicationController
     @user = User.find(params[:user_id])
     @job_application = @user.job_applications.find(params[:job_application_id])
     @edit_job_information = @job_application.job_informations.find(params[:id])
-    render 'job_applications/show'
+    respond_to do |format|
+      format.html { render 'job_applications/show' }
+      format.js {}
+    end
   end
 
   def update
     @user = User.find(params[:user_id])
     @job_application = @user.job_applications.find(params[:job_application_id])
     @edit_job_information = @job_application.job_informations.find(params[:id])
-    if @edit_job_information.update(job_information_params)
-      flash[:success] = 'Information modifiée'
-      redirect_to user_job_application_path(@user, @job_application)
-    else
-      render 'job_applications/show'
+
+    respond_to do |format|
+      if params[:cancel]
+        format.html do
+          redirect_to user_job_application_path(@user, @job_application)
+        end
+        format.js
+      elsif @edit_job_information.update(job_information_params)
+        format.html do
+          flash[:success] = 'Information modifiée'
+          redirect_to user_job_application_path(@user, @job_application)
+        end
+        format.js
+      else
+        format.html { render 'job_applications/show' }
+        format.js { render 'job_informations/edit' }
+      end
     end
   end
 

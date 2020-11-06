@@ -1,30 +1,29 @@
-<div class="job-information job-information-form <%= @new_job_information ? "form-new" : "form-edit" %>">
   <%= form_with model: [@user, @job_application, job_information] do |form| %>
-    <div class="row">
+  <div class="row">
 
-      <div class="col-lg-2 h2">
-        <%= form.text_field :name, class: "form-control"  %>
-      </div>
+    <div class="col-lg-2 h2">
+      <%= form.text_field :name, class: "form-control"  %>
+    </div>
 
-      <div class="col-lg-10">
-        <%= form.text_area :content, class: "form-control", rows: 9 %>
+    <div class="col-lg-10">
+      <%= form.text_area :content, class: "form-control", rows: 9 %>
 
-        <% if job_information.errors.any? %>
-          <div class="alert alert-danger" role="alert">
-            <p>La création n'a pu aboutir pour les raisons suivantes :</p>
-            <ul>
-              <% job_information.errors.full_messages.each do |message| %>
-                <li> <%= message %> </li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-        <div class="d-flex">
-          <%= form.submit "Valider", class: "btn btn-success btn-block col-lg-3" %>
-          <%= link_to "Annuler", user_job_application_path(@user, @job_application), class: "btn btn-outline-secondary btn-block col-lg-3 ml-auto" %>
+      <% if job_information.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+          <p>La création n'a pu aboutir pour les raisons suivantes :</p>
+          <ul>
+            <% job_information.errors.full_messages.each do |message| %>
+              <li> <%= message %> </li>
+            <% end %>
+          </ul>
         </div>
+      <% end %>
+      <div class="d-flex">
+        <%= form.submit "Valider", class: "btn btn-success btn-block col-lg-3" %>
+        <%= button_tag "Annuler", type: "submit", name: "cancel", value: true, class: "btn btn-outline-secondary btn-block col-lg-3 ml-auto" %>
       </div>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>
+
 <hr class="my-2">
